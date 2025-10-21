@@ -1,42 +1,53 @@
-# spacetime-panel
+# Spacetime Panel
 
-This template should help get you started developing with Vue 3 in Vite.
+---
 
-## Recommended IDE Setup
+(TODO: About section)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## Getting Started:
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Clone this repositry onto your computer:
 
-## Type Support for `.vue` Imports in TS
+```HTTPS
+https://github.com/KeoneSomers/spacetime-panel.git
+```
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Insatall the projects dependencies:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Start your local Spacetime server:
 
-```sh
+```Spacetime CLI
+spacetime start
+```
+
+Generate your server bindings:
+
+```bash
+spacetime generate --lang typescript --out-dir C:/Users/keone/spacetime-panel/src/spacetime_module_bindings --project-path C:\Users\keone\Elegon\server-csharp
+```
+
+Start the local site:
+
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Done! Now you can view Spacetime Panel in your web browser at: http://localhost:5173/
 
-```sh
-npm run build
-```
+---
+
+## Current Features:
+
+(TODO)
+
+ ---
+
+## Upcoming Features
+
+(TODO)
