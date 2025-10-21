@@ -14,7 +14,7 @@ Clone this repositry onto your computer:
 https://github.com/KeoneSomers/spacetime-panel.git
 ```
 
-Insatall the projects dependencies:
+Insatall the projects dependencies (Requires Node JS):
 
 ```bash
 npm install

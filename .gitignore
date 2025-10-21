@@ -30,3 +30,6 @@ coverage
 *.tsbuildinfo
 
 spacetime_module_bindings
+
+auto-imports.d.ts
+components.d.ts
