@@ -29,10 +29,10 @@ Start your local Spacetime server:
 spacetime start
 ```
 
-Generate your server bindings:
+Navigate to your Spacetime Server local directory and run this to generate your server bindings:
 
 ```bash
-spacetime generate --lang typescript --out-dir C:/Users/keone/spacetime-panel/src/spacetime_module_bindings --project-path C:\Users\keone\Elegon\server-csharp
+spacetime generate --lang typescript --out-dir <BasePathToSpacetimePanel>/spacetime-panel/src/spacetime_module_bindings
 ```
 
 Start the local site:
