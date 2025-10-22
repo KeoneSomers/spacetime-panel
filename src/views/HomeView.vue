@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as moduleBindings from '../spacetime_module_bindings/index';
 import {ref, computed, onMounted} from "vue";
+import type { TabsItem } from '@nuxt/ui'
 
 const connection = ref<moduleBindings.DbConnection | null>();
 const toast = useToast()
@@ -70,7 +71,8 @@ const safeStringify = (obj: any, space = 2) =>
     space
   );
 
-const selectTable = async(tableName: string) => {
+const selectTable = async(tableIndex: any) => {
+  const tableName = tables.value[tableIndex].name;
   if (!connection.value) return ;
 
   selectedTable.value = tableName;
@@ -156,6 +158,7 @@ if (connection.value) {
 }
 
 const selectedTable = ref();
+const selectedTableTab = ref();
 
 const formattedRows = computed(() =>
   rows.value?.map((row) => {
@@ -187,15 +190,16 @@ const formattedRows = computed(() =>
 
     <div class="flex">
       <!--  Sidebar-->
-      <div class="border-r border-accented h-[calc(100vh-65px)] p-4 w-72">
-        <span class="text-sm font-semibold">Tables:</span>
-        <ul class="space-y-2 mt-2">
-          <li v-for="table in tables">
-            <UButton :label="table.name" @click="() => {
-                       selectTable(table.name)
-                     }" class="w-full" icon="i-lucide-table" :variant="table.name === selectedTable ? 'solid' : 'soft'" :color="table.name === selectedTable ? 'primary' : 'neutral'"/>
-          </li>
-        </ul>
+      <div class="border-r border-accented h-[calc(100vh-65px)] p-4">
+        <span class="text-xs font-semibold">Tables:</span>
+        <UTabs class="mt-1" orientation="vertical" variant="pill" :content="false" :items="tables.map((item) => {
+                 return {
+                   label: item.name,
+                   icon: 'i-lucide-table'
+                 }
+               })" v-model="selectedTableTab" @update:modelValue="(e) => selectTable(e)" :ui=" {
+                 trigger: 'items-start text-start w-full'
+               }"/>
       </div>
 
       <!--Main Content-->
