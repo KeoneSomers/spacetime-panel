@@ -174,10 +174,10 @@ const formattedRows = computed(() =>
 </script>
 
 <template>
-  <div>
+  <div class="bg-black p-2">
     <!--Header-->
-    <div class="flex justify-between p-4 border-b border-accented">
-      <div class="font-bold flex items-center">Spacetime Panel <UBadge label="v0.1.0" size="xs" variant="soft" class="ml-2"/></div>
+    <div class="flex justify-between p-4">
+      <div class="font-bold flex items-center">Spacetime Panel <UBadge label="v0.2.0" size="xs" variant="soft" class="ml-2"/></div>
       <div v-if="connection">
         <UBadge :label="'Connected to ' + serverUri" color="success" variant="soft" class="mr-2 rounded-full"/>
         <UButton label="Disconnect" color="neutral" @click="disconnect"/>
@@ -188,11 +188,11 @@ const formattedRows = computed(() =>
 
     </div>
 
-    <div class="flex">
+    <div class="flex space-x-2">
       <!--  Sidebar-->
-      <div class="border-r border-accented h-[calc(100vh-65px)] p-4">
-        <span class="text-xs font-semibold">Tables:</span>
-        <UTabs class="mt-1" orientation="vertical" variant="pill" :content="false" :items="tables.map((item) => {
+      <UCard variant="soft" :ui=" {body: 'px-0.5!'}" class="h-[calc(100vh-80px)]">
+        <span class="text-xs font-semibold px-4">Tables:</span>
+        <UTabs class="mt-2" orientation="vertical" variant="link" :content="false" :items="tables.map((item) => {
                  return {
                    label: item.name,
                    icon: 'i-lucide-table'
@@ -200,10 +200,10 @@ const formattedRows = computed(() =>
                })" v-model="selectedTableTab" @update:modelValue="(e) => selectTable(e)" :ui=" {
                  trigger: 'items-start text-start w-full'
                }"/>
-      </div>
+      </UCard>
 
       <!--Main Content-->
-      <div class="flex-1">
+      <UCard variant="soft" class="flex-1" :ui=" {body: 'p-0!'}">
         <main>
           <div v-if="connection" class=" flex flex-col">
             <div>
@@ -211,10 +211,10 @@ const formattedRows = computed(() =>
                 :data="formattedRows"
                 :sticky="true"
                 :ui=" {
-                  root: 'h-[calc(100vh-122px)]',
+                  root: 'h-[calc(100vh-144px)]',
                   thead: 'sticky top-0 inset-x-0 bg-default z-[2] backdrop-blur-none border-b border-accented',
                   th: 'px-4 py-3.5 text-sm text-highlighted text-left font-semibold border-l border-accented [&:first-child]:border-l-0',
-                  td: 'p-4 text-sm text-muted whitespace-nowrap border-l border-accented [&:first-child]:border-l-0',
+                  td: 'p-2 text-sm text-muted whitespace-nowrap border-l border-accented [&:first-child]:border-l-0',
                   tbody: 'border-b border-accented'
                 }"
                 class="font-mono border-r border-accented"
@@ -226,7 +226,7 @@ const formattedRows = computed(() =>
             </div>
           </div>
 
-          <div class="w-full h-[calc(100vh-65px)] flex items-center justify-center" v-else>
+          <div class="w-full h-[calc(100vh-144px)] flex items-center justify-center" v-else>
             <div class="flex flex-col space-y-2 w-96 border border-accented rounded-xl p-4">
               <span class="mb-8 font-bold">You are not connected</span>
 
@@ -245,7 +245,7 @@ const formattedRows = computed(() =>
 
           </div>
         </main>
-      </div>
+      </UCard>
     </div>
   </div>
 </template>
