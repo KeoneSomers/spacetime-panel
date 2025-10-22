@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import * as moduleBindings from '../spacetime_module_bindings/index';
 import {ref, onMounted} from "vue";
-import CodeBlock from "@/components/CodeBlock.vue";
 
 const connection = ref<moduleBindings.DbConnection | null>();
 const toast = useToast()
@@ -164,33 +163,38 @@ const selectedTable = ref();
   <div>
     <!--Header-->
     <div class="flex justify-between p-4 border-b border-accented">
-      <div class="font-bold">Spacetime Panel v0.1.0</div>
-      <div v-if="connection"><UButton label="Disconnect" color="error" @click="disconnect"/></div>
+      <div class="font-bold flex items-center">Spacetime Panel <UBadge label="v0.1.0" size="xs" variant="soft" class="ml-2"/></div>
+      <div v-if="connection">
+        <UBadge :label="'Connected to ' + serverUri" color="success" variant="soft" class="mr-2 rounded-full"/>
+        <UButton label="Disconnect" color="neutral" @click="disconnect"/>
+      </div>
+      <div v-else>
+        <UBadge label="Disconnected" color="error" variant="soft" class="rounded-full"/>
+      </div>
 
     </div>
 
     <div class="flex">
       <!--  Sidebar-->
-      <div class="border-r border-accented h-[calc(100vh-5rem)] p-4 w-72">
+      <div class="border-r border-accented h-[calc(100vh-60px)] p-4 w-72">
         <span class="text-sm font-semibold">Tables:</span>
         <ul class="space-y-2 mt-2">
           <li v-for="table in tables">
-            <UButton :label="table.name" @click="selectTable(table.name)" class="w-full" icon="i-lucide-table" :variant="table.name === selectedTable ? 'solid' : 'soft'"/>
+            <UButton :label="table.name" @click="() => {
+                       selectTable(table.name)
+                     }" class="w-full" icon="i-lucide-table" :variant="table.name === selectedTable ? 'solid' : 'soft'" :color="table.name === selectedTable ? 'primary' : 'neutral'"/>
           </li>
         </ul>
       </div>
 
       <!--Main Content-->
-      <div class="p-4 flex-1 h-[calc(100vh-5rem)] overflow-auto">
+      <div class="flex-1">
         <main>
           <div v-if="connection">
-            <div v-for="row in rows">
-              <Suspense>
-                <CodeBlock :content="safeStringify(row)"/>
-              </Suspense>
-            </div>
+
+            <UTable :data="rows" :sticky="true" class="h-[calc(100vh-5rem)]"/>
           </div>
-          <div class="w-full h-[calc(100vh-10rem)] flex items-center justify-center" v-else>
+          <div class="w-full h-[calc(100vh-60px)] flex items-center justify-center" v-else>
             <div class="flex flex-col space-y-2 w-96 border border-accented rounded-xl p-4">
               <span class="mb-8 font-bold">You are not connected</span>
 
