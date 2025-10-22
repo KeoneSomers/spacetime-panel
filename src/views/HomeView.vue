@@ -205,18 +205,25 @@ const formattedRows = computed(() =>
       <!--Main Content-->
       <div class="flex-1">
         <main>
-          <div v-if="connection">
-            <UTable
-              :data="formattedRows"
-              :sticky="true"
-              :ui=" {
-                root: 'h-[calc(100vh-5rem)]',
-                thead: 'sticky top-0 inset-x-0 bg-default z-[2] backdrop-blur-none border-b border-accented',
-                th: 'px-4 py-3.5 text-sm text-highlighted text-left font-semibold border-l border-accented [&:first-child]:border-l-0',
-                td: 'p-4 text-sm text-muted whitespace-nowrap border-l border-accented [&:first-child]:border-l-0',
-              }"
-              class="font-mono border-r border-accented"
-            />
+          <div v-if="connection" class=" flex flex-col">
+            <div>
+              <UTable
+                :data="formattedRows"
+                :sticky="true"
+                :ui=" {
+                  root: 'h-[calc(100vh-122px)]',
+                  thead: 'sticky top-0 inset-x-0 bg-default z-[2] backdrop-blur-none border-b border-accented',
+                  th: 'px-4 py-3.5 text-sm text-highlighted text-left font-semibold border-l border-accented [&:first-child]:border-l-0',
+                  td: 'p-4 text-sm text-muted whitespace-nowrap border-l border-accented [&:first-child]:border-l-0',
+                  tbody: 'border-b border-accented'
+                }"
+                class="font-mono border-r border-accented"
+              />
+            </div>
+
+            <div v-if="rows" class="bg-accent border-t border-accented p-4">
+              {{ rows.length }} Total Records
+            </div>
           </div>
 
           <div class="w-full h-[calc(100vh-65px)] flex items-center justify-center" v-else>
