@@ -1,8 +1,11 @@
 # Spacetime Panel
 
----
+Spacetime Panel is a lightweight, web-based control panel designed to interact with your Spacetime server. It provides
+an intuitive interface to manage your game’s data, view server state, and test functionality in real-time. Built with
+TypeScript and Node.js, it integrates seamlessly with Spacetime’s TypeScript bindings, making it easy to inspect and
+manipulate your database tables directly from the browser.
 
-(TODO: About section)
+![Screenshot Image](https://i.postimg.cc/T1L579wp/Screenshot-2025-10-22-110023.png)
 
 ---
 
