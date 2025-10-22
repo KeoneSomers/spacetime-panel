@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as moduleBindings from '../spacetime_module_bindings/index';
-import {ref, onMounted} from "vue";
+import {ref, computed, onMounted} from "vue";
 
 const connection = ref<moduleBindings.DbConnection | null>();
 const toast = useToast()
@@ -95,7 +95,6 @@ tableKey
       }
 
       rows.value = table.iter();
-      //      console.log(`Rows for ${tableKey}:`, rows.value);
     })
     .onError((errorCtx) => {
       toast.add({
@@ -157,6 +156,18 @@ if (connection.value) {
 }
 
 const selectedTable = ref();
+
+const formattedRows = computed(() =>
+  rows.value?.map((row) => {
+    const formatted: Record<string, any> = {}
+    for (const [key, value] of Object.entries(row)) {
+      if (value === null || value === undefined) formatted[key] = ''
+      else if (typeof value === 'object') formatted[key] = safeStringify(value)
+      else formatted[key] = value
+    }
+    return formatted
+  }) ?? []
+)
 </script>
 
 <template>
@@ -176,7 +187,7 @@ const selectedTable = ref();
 
     <div class="flex">
       <!--  Sidebar-->
-      <div class="border-r border-accented h-[calc(100vh-60px)] p-4 w-72">
+      <div class="border-r border-accented h-[calc(100vh-65px)] p-4 w-72">
         <span class="text-sm font-semibold">Tables:</span>
         <ul class="space-y-2 mt-2">
           <li v-for="table in tables">
@@ -191,10 +202,20 @@ const selectedTable = ref();
       <div class="flex-1">
         <main>
           <div v-if="connection">
-
-            <UTable :data="rows" :sticky="true" class="h-[calc(100vh-5rem)]"/>
+            <UTable
+              :data="formattedRows"
+              :sticky="true"
+              :ui=" {
+                root: 'h-[calc(100vh-5rem)]',
+                thead: 'sticky top-0 inset-x-0 bg-default z-[2] backdrop-blur-none border-b border-accented',
+                th: 'px-4 py-3.5 text-sm text-highlighted text-left font-semibold border-l border-accented [&:first-child]:border-l-0',
+                td: 'p-4 text-sm text-muted whitespace-nowrap border-l border-accented [&:first-child]:border-l-0',
+              }"
+              class="font-mono border-r border-accented"
+            />
           </div>
-          <div class="w-full h-[calc(100vh-60px)] flex items-center justify-center" v-else>
+
+          <div class="w-full h-[calc(100vh-65px)] flex items-center justify-center" v-else>
             <div class="flex flex-col space-y-2 w-96 border border-accented rounded-xl p-4">
               <span class="mb-8 font-bold">You are not connected</span>
 

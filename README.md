@@ -5,7 +5,7 @@ an intuitive interface to manage your game’s data, view server state, and test
 TypeScript and Node.js, it integrates seamlessly with Spacetime’s TypeScript bindings, making it easy to inspect and
 manipulate your database tables directly from the browser.
 
-![Screenshot Image](https://i.postimg.cc/T1L579wp/Screenshot-2025-10-22-110023.png)
+![Screenshot Image](https://i.postimg.cc/6p56r4Lp/Screenshot-2025-10-22-141626.png)
 
 ---
 
