@@ -1,6 +1,6 @@
 # Spacetime Panel
 
-Spacetime Panel is a lightweight, web-based control panel designed to interact with your Spacetime server. It provides
+Spacetime Panel is a lightweight, web-based control panel designed to interact with your SpacetimeDB server. It provides
 an intuitive interface to manage your game’s data, view server state, and test functionality in real-time. Built with
 TypeScript and Node.js, it integrates seamlessly with Spacetime’s TypeScript bindings, making it easy to inspect and
 manipulate your database tables directly from the browser.
@@ -13,8 +13,8 @@ manipulate your database tables directly from the browser.
 
 Clone this repositry onto your computer:
 
-```HTTPS
-https://github.com/KeoneSomers/spacetime-panel.git
+```bash
+git clone https://github.com/KeoneSomers/spacetime-panel.git
 ```
 
 Insatall the projects dependencies (Requires Node JS):
@@ -48,14 +48,24 @@ Done! Now you can view Spacetime Panel in your web browser at: http://localhost:
 ## Current Features:
 
 - Connect to your SpacetimeDB Server
-- View Tables in realtime
+- View Tables (in realtime)
+- View Reducers
+- Light & Dark themes
 
  ---
 
 ## Upcoming Features
 
-- View Reducers
+- Table pagination
 - Table types
 - Table PK tag
-- Login with token
+- Login with token (optional)
 - Show CCU count
+
+---
+
+## Contact
+
+<keonesomers@icloud.com>
+
+Discord: Keone._.
