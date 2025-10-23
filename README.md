@@ -47,10 +47,15 @@ Done! Now you can view Spacetime Panel in your web browser at: http://localhost:
 
 ## Current Features:
 
-(TODO)
+- Connect to your SpacetimeDB Server
+- View Tables in realtime
 
  ---
 
 ## Upcoming Features
 
-(TODO)
+- View Reducers
+- Table types
+- Table PK tag
+- Login with token
+- Show CCU count
